@@ -1,0 +1,103 @@
+[
+  {
+    "question": "What is Node.js?",
+    "options": [
+      "A web framework built on top of JavaScript",
+      "A runtime environment for executing Javascriptcode server-side",
+      "A front-end JavaScript library",
+      "A database management system"
+    ],
+    "correctAnswer": "A runtime environment for executing JavaScript code server-side"
+  },
+  {
+    "question": "What is a module in Node.js?",
+    "options": [
+      "A standalone JavaScript file",
+      "A function that executes asynchronously",
+      "A unit of code encapsulation that can be reused",
+      "A built-in data structure in Node.js"
+    ],
+    "correctAnswer": "A unit of code encapsulation that can be reused"
+  },
+  {
+    "question": "Which of the following is NOT a core module in Node.js?",
+    "options": [
+      "http",
+      "fs",
+      "express",
+      "events"
+    ],
+    "correctAnswer": "express"
+  },
+  {
+    "question": "What is the purpose of the Event Loop in Node.js?",
+    "options": [
+      "To handle asynchronous operations",
+      "To manage browser events",
+      "To execute callback functions",
+      "To manage HTTP requests"
+    ],
+    "correctAnswer": "To handle asynchronous operations"
+  },
+  {
+    "question": "What is a callback in Node.js?",
+    "options": [
+      "A function passed as an argument to another function, to be executed later",
+      "A function that is executed immediately",
+      "A function that is called multiple times",
+      "A function that has no return statement"
+    ],
+    "correctAnswer": "A function passed as an argument to another function, to be executed later"
+  },
+  {
+    "question": "Which method is used to read files asynchronously in Node.js?",
+    "options": [
+      "fs.readFileSync()",
+      "fs.openSync()",
+      "fs.readFile()",
+      "fs.open()"
+    ],
+    "correctAnswer": "fs.readFile()"
+  },
+  {
+    "question": "What does the 'require' function do in Node.js?",
+    "options": [
+      "It imports modules for use in the current module",
+      "It exports modules for use in other modules",
+      "It creates new modules",
+      "It reads files asynchronously"
+    ],
+    "correctAnswer": "It imports modules for use in the current module"
+  },
+  {
+    "question": "What is the purpose of the 'exports' object in Node.js modules?",
+    "options": [
+      "To define variables and functions that can be accessed outside the module",
+      "To import modules from other files",
+      "To execute callback functions",
+      "To handle HTTP requests"
+    ],
+    "correctAnswer": "To define variables and functions that can be accessed outside the module"
+  },
+  {
+    "question": "Which event is emitted when an error occurs in Node.js?",
+    "options": [
+      "error",
+      "exception",
+      "fail",
+      "crash"
+    ],
+    "correctAnswer": "error"
+  },
+  {
+    "question": "What is the purpose of the 'process' object in Node.js?",
+    "options": [
+      "To manage HTTP requests",
+      "To provide information about the current Node.js process",
+      "To execute callback functions",
+      "To read files asynchronously"
+    ],
+    "correctAnswer": "To provide information about the current Node.js process"
+  }
+]
+

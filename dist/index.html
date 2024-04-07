@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Node.js Quiz</h1>
+        <div id="questions-container"></div>
+        <button id="submit">Submit</button>
+    </div>
+    
+    <script type="module">
+        async function fetchQuestions() {
+            try {
+                const response = await fetch('/api/questions');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch questions');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error(error);
+                alert('Failed to fetch questions. Please try again later.');
+            }
+        }
+
+        async function renderQuestions() {
+            try {
+                const questionData = await fetchQuestions();
+                const questions = questionData.default;
+
+                const questionsContainer = document.getElementById('questions-container');
+                questions.forEach((q, index) => {
+                    const questionElement = document.createElement('div');
+                    questionElement.id = `question${index}`;
+                    questionElement.textContent = `Question ${index + 1}: ${q.question}`;
+                    questionsContainer.appendChild(questionElement);
+
+                    const optionsList = document.createElement('ul');
+                    q.options.forEach((option, i) => {
+                        const optionItem = document.createElement('li');
+                        const radioButton = document.createElement('input');
+                        radioButton.type = 'radio';
+                        radioButton.name = `question${index}`;
+                        radioButton.value = option;
+                        optionItem.appendChild(radioButton);
+                        const optionText = document.createElement('span');
+                        optionText.textContent = option;
+                        optionItem.appendChild(optionText);
+                        optionsList.appendChild(optionItem);
+                    });
+                    questionsContainer.appendChild(optionsList);
+                });
+            } catch (error) {
+                console.error(error);
+                alert('Failed to render questions. Please try again later.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestions();
+
+            const submitButton = document.getElementById('submit');
+            submitButton.addEventListener('click', async () => {
+                try {
+                    const answers = [];
+                    const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
+                    radioButtons.forEach(radioButton => {
+                        answers.push(radioButton.value);
+                    });
+
+                    const response = await fetch('/api/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ answers: answers }) // Ensure answers are sent as an array
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to submit answers');
+                    }
+
+                    const data = await response.json();
+                    const score = data.score;
+                    const totalQuestions = document.querySelectorAll('#questions-container > div').length;
+                    const correctAnswers = score;
+                    alert(`Your score is ${correctAnswers}/${totalQuestions}. You answered ${correctAnswers} questions correctly.`);
+                } catch (error) {
+                    console.error(error);
+                    alert('Failed to submit answers. Please try again later.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
