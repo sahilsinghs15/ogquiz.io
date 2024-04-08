@@ -8,3 +8,7 @@ cd dist
 nodemon app.js
 
 ``
+
+To use it directly here is the link :-
+https://ogquiz-io-sahil15.onrender.com/
+
